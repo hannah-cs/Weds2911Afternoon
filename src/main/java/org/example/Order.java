@@ -1,6 +1,10 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Order {
+    private static List<Order> orders = new ArrayList<>();
     private int id;
     private int productId;
     private int quantity;

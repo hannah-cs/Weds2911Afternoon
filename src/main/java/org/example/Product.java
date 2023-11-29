@@ -1,5 +1,8 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
     private int id;
     private String name;
@@ -8,11 +11,13 @@ public class Product {
     private int stockQuantity;
     public Product(){}
 
-    public Product(int id, String name, double price, int stockQuantity) {
+    public Product(int id, String name, double price, String category, int stockQuantity) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.category = category;
         this.stockQuantity = stockQuantity;
+        ProductDAO.addProduct(this);
     }
 
     public int getId() {
