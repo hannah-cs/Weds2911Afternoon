@@ -10,7 +10,7 @@ public class Main {
         int serverPort = 8000;
         try {
             HttpServer server = HttpServer.create(new InetSocketAddress(serverPort), 0);
-            server.createContext("/api/user", new MyHTTPHandler());
+            server.createContext("/api", new MyHTTPHandler());
             server.setExecutor(null);
             server.start();
 
