@@ -1,26 +1,16 @@
 package org.example;
 
-import com.sun.net.httpserver.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
+import java.net.URI;
 
 public class Main {
     public static void main(String[] args) {
-        int serverPort = 8000;
-        try {
-            HttpServer server = HttpServer.create(new InetSocketAddress(serverPort), 0);
-            server.createContext("/api", new MyHTTPHandler());
-            server.setExecutor(null);
-            server.start();
-
-        Product product = new Product(1, "Product one", 29.99, "Cat1", 150);
-        Product product2 = new Product(2, "Product two", 56.50, "Cat2", 75);
-
-        Thread.sleep(600000000);
-
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-        }
+        Product product = new Product(1, "Product One", 25.99, "Cat1", 100);
+        String BASE_URI = "http://localhost:8000/";
+        ResourceConfig resourceConfig = new ResourceConfig(ProductResource.class);
+        GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), resourceConfig);
+        System.out.println("Server started at: " + BASE_URI);
     }
 }
